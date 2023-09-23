@@ -1,4 +1,4 @@
-#Scrapes :ServerName :TotalMembers :OnlineMembers
+#Scrapes -ServerName -TotalMembers -OnlineMembers -VanityCode
 #API Endpoint :- https://discord.com/api/v9/invites/{inviteCode}?with_counts=true&with_expiration=true
 
 import requests
