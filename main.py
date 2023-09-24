@@ -9,10 +9,29 @@ invites = open("invites.txt", 'r')
 for invite in invites:
     invite = invite.rstrip()
     print("Working on invite: ", invite)
-    url = "https://discord.com/api/v9/invites/{}?with_counts=true&with_expiration=true".format(invite)
+    url = "https://discord.com/api/v9/invites/{}?with_counts=true&with_expiration=true".format(
+        invite)
     response = requests.get(url)
     info = response.json()
-    
+    if info["code"] == 10006:
+
+        with open("serverNames.txt", "a", encoding="utf-8") as names:
+            names.write("Invalid Invite\n")
+            names.close()
+
+        with open("totalMembers.txt", "a") as tMembers:
+            tMembers.write("Invalid Invite\n")
+            tMembers.close()
+
+        with open("onlineMembers.txt", "a") as oMembers:
+            oMembers.write("Invalid Invite\n")
+            oMembers.close()
+
+        with open("vanityCodes.txt", "a") as vanity:
+            vanity.write("Invalid Invite\n")
+            vanity.close()
+            continue
+
     with open("serverNames.txt", "a", encoding="utf-8") as names:
         names.write("{}\n".format(info["guild"]["name"]))
         names.close()
