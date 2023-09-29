@@ -7,7 +7,7 @@ import time
 invites = open("invites.txt", 'r')
 
 for invite in invites:
-    invite = invite.rstrip()
+    invite = invite.rstrip().lstrip()
     print("Working on invite: ", invite)
     url = "https://discord.com/api/v9/invites/{}?with_counts=true&with_expiration=true".format(
         invite)
